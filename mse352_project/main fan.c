@@ -15,7 +15,7 @@
 #include "driverlib/interrupt.h"
 //#include "PLL.h"
 
-#define PWM_FREQUENCY 20000 //fan frequency = 20Mhz
+#define PWM_FREQUENCY 20000 //fan frequency = 20Khz
 volatile uint32_t ui32Load;
 volatile uint32_t ui32PWMClock;
 volatile uint32_t ui32Adjust; //change to uint32_t for 32 bit registers
@@ -38,12 +38,12 @@ int main(void)
     TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
 
     //First, calculate the number of clock cycles required for a ? Hz period by calling SysCtlClockGet() and dividing it by your desired frequency
-    //Then divide that by two, since we want a count that is ½ of that for the interrupt.
+    //Then divide that by two, since we want a count that is Â½ of that for the interrupt.
     ui32Period = (SysCtlClockGet() / 0.5);
     //subtract 1 from the timer period since the interrupt fires at the zero count.
     TimerLoadSet(TIMER0_BASE, TIMER_A, ui32Period -1);
 
-    //enable the interrupt in NVIC (Nested Vector Interrupt Controller, the Cortex M4’s interrupt controller)
+    //enable the interrupt in NVIC (Nested Vector Interrupt Controller, the Cortex M4â€™s interrupt controller)
     IntEnable(INT_TIMER0A);
     TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     IntMasterEnable();
