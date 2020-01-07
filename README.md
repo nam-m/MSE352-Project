@@ -25,8 +25,8 @@ From there, MCU must be set up to run a timer to start counting the edges of dig
 that is converted by ADC from Servo DC motor to MCU. 
 In order to calculate the speed of the motor, the time is recorded for every three edge changes
 because every three-edge change is one complete period of the feedback signal. 
-
 Afterwards, the speed of the motor is determined from the average of three continuous samples. 
+
 Next, another ADC in MCU is set up to read the reference speed from the potentiometer. 
 The reference speed is then compared to the actual speed to find the error source. 
 With the error source, the speed reading is adjusted to displayed on 3-digit 7-segment.
